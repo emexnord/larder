@@ -1,0 +1,58 @@
+{
+  "forceLoginMethod": "claudeai",
+  "forceLoginOrgUUID": [
+    "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  ],
+  "availableModels": [
+    "opus",
+    "sonnet"
+  ],
+  "requiredMinimumVersion": "2.1.150",
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Bash(curl * | sh)",
+      "Bash(git push --force *)"
+    ],
+    "disableBypassPermissionsMode": "disable"
+  },
+  "strictKnownMarketplaces": [
+    { "source": "github", "repo": "anthropics/claude-plugins-official" },
+    { "source": "github", "repo": "acme-corp/*" },
+    { "source": "skills-dir" }
+  ],
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": { "source": "github", "repo": "anthropics/claude-plugins-official" }
+    },
+    "acme-tools": {
+      "source": { "source": "github", "repo": "acme-corp/claude-plugins" },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": {
+    "acme-workflow@acme-tools": true
+  },
+  "disableSideloadFlags": true,
+  "sandbox": {
+    "enabled": true,
+    "network": {
+      "allowedDomains": [
+        "registry.npmjs.org",
+        "pypi.org",
+        "files.pythonhosted.org",
+        "github.com",
+        "*.acme-corp.internal"
+      ]
+    }
+  },
+  "cleanupPeriodDays": 14,
+  "claudeMd": "Company policy: never paste customer personal data into prompts or test fixtures. Agent-written code reaches main only through a reviewed PR approved by a human code owner.",
+  "companyAnnouncements": [
+    "Claude Code at Acme: setup guide and owners at go/claude-setup"
+  ]
+}

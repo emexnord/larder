@@ -1,0 +1,7 @@
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/agent-memory-local/
+.claude/worktrees/
+.claude/state/
+.claude/logs/
+.DS_Store

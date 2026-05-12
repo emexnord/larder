@@ -1,0 +1,13 @@
+# The Claude setup is owned by its DRI ("agent manager") so changes are reviewed like code.
+/CLAUDE.md                 @acme/dev-productivity
+/REVIEW.md                 @acme/dev-productivity
+/.mcp.json                 @acme/dev-productivity @acme/security
+/.claude/                  @acme/dev-productivity
+/.claude/hooks/            @acme/dev-productivity @acme/security
+/.claude/settings.json     @acme/dev-productivity @acme/security
+/evals/                    @acme/dev-productivity
+/.github/workflows/        @acme/platform @acme/security
+
+# Package owners maintain their own area conventions (monorepo)
+/packages/api/CLAUDE.md    @acme/api-team
+/packages/web/CLAUDE.md    @acme/web-team

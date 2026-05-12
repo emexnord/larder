@@ -1,0 +1,7 @@
+# Append these lines to your repo's .gitignore
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/agent-memory-local/
+.claude/worktrees/
+.claude/state/
+.claude/logs/

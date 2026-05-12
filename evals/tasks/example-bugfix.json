@@ -1,0 +1,6 @@
+{
+  "id": "bugfix-rounding-in-invoice-total",
+  "prompt": "Invoice totals are off by one cent when a line item has three decimal places. Write a failing test in tests/billing/invoice.test.ts, then fix src/billing/invoice.ts. Follow CLAUDE.md.",
+  "allowed_tools": "Read,Grep,Glob,Edit,Write,Bash(make test *),Bash(make lint)",
+  "check": "make test FILE=tests/billing/invoice.test.ts && git diff --quiet HEAD -- tests/billing/fixtures"
+}

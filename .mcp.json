@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "issue-tracker": {
+      "type": "http",
+      "url": "${ISSUE_TRACKER_MCP_URL:-https://mcp.atlassian.com/v1/mcp}"
+    },
+    "docs-wiki": {
+      "type": "http",
+      "url": "${DOCS_MCP_URL}",
+      "headers": {
+        "Authorization": "Bearer ${DOCS_MCP_TOKEN}"
+      }
+    },
+    "error-monitoring": {
+      "type": "http",
+      "url": "${ERRORS_MCP_URL}"
+    },
+    "browser": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "db-readonly": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "${READONLY_DATABASE_URL}"]
+    }
+  }
+}

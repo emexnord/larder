@@ -1,0 +1,18 @@
+{
+  "name": "acme-tools",
+  "owner": {
+    "name": "Acme Developer Productivity",
+    "email": "dev-productivity@acme-corp.example"
+  },
+  "metadata": {
+    "description": "Approved Claude Code plugins for Acme engineering"
+  },
+  "plugins": [
+    {
+      "name": "acme-workflow",
+      "source": "./plugins/acme-workflow",
+      "description": "Shared intent -> spec -> plan -> implement -> verify -> QA workflow, reviewer agents and guardrail hooks",
+      "version": "1.0.0"
+    }
+  ]
+}

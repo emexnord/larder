@@ -1,0 +1,8 @@
+{
+  "name": "acme-workflow",
+  "version": "1.0.0",
+  "description": "Shared SDLC skills, reviewer/QA agents and guardrail hooks for every Acme repository",
+  "author": {
+    "name": "Acme Developer Productivity"
+  }
+}
