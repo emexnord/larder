@@ -1,0 +1,1 @@
+// App renders without crashing
