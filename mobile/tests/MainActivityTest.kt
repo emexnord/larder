@@ -1,0 +1,1 @@
+// MainActivity starts without crashing
