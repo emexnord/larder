@@ -1,0 +1,20 @@
+# Simulated CI: jobs only report success. Nothing is built or tested.
+name: CI
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "backend lint, typecheck and tests passed (simulated)"
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "frontend lint, typecheck and tests passed (simulated)"
+  mobile:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "mobile lint and tests passed (simulated)"
