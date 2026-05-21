@@ -26,25 +26,38 @@ one word or one sentence, usually a comment such as `# returns all pantry items`
 `src/` under `tests/` per part and are equally trivial. A "change" means editing or adding such lines.
 
 ## The team
-| Dev | Role | Usual area |
-| --- | --- | --- |
-| Emexnord | Lead | Reviews, merges, releases, repo setup; sometimes features |
-| Amara Okafor | Backend | `backend/` |
-| Lukas Brandt | Frontend | `frontend/` |
-| Sana Qureshi | Mobile | `mobile/` |
-| Diego Ramos | Full-stack | cross-cutting features, CI, integration fixes |
+All five are real GitHub accounts. Only emexnord is authenticated on this machine.
 
-Identities: emails are `<firstname>@larder.example` (Emexnord: `emexnord@larder.example`). Never use a
-real personal email. Commit as a dev with:
-`git -c user.name="Amara Okafor" -c user.email="amara@larder.example" commit -m "..."`
+| GitHub user | Commit email | Role | Usual area |
+| --- | --- | --- | --- |
+| emexnord | emranhi001@gmail.com | Lead (repo owner) | Reviews, merges, releases, setup; sometimes features |
+| Mamembeshir | mamemohammed2017@gmail.com | Backend | `backend/` |
+| amuif | amudihayat@gmail.com | Frontend | `frontend/` |
+| Brook-Hassen | brookhassen.dev@gmail.com | Mobile | `mobile/` |
+| abmoh4219 | abdelahmohammed0919@gmail.com | Full-stack | cross-cutting features, CI, integration fixes |
+
+Identities: commit with `git -c user.name="<GitHub user>" -c user.email="<email>" commit`.
+Stage 1 used `emexnord@larder.example`, mapped in `.mailmap`.
+Identity lives in commits only (author email links to the real account). All GitHub actions
+(push, PR, comments, merge) are done by emexnord's account. To keep the story readable:
+- PR body starts with `Author: <GitHub user>`.
+- Reviews and replies are PR comments signed `[Review by <user>]` / `[<user>]` (bare names, no
+  `@`, so nobody is pinged).
+
+Timeline: history is backdated. Every commit and merge sets `GIT_AUTHOR_DATE` and
+`GIT_COMMITTER_DATE` (timezone `+0300`, working hours, weekdays), continuing from the last commit.
+Stage 1 ended 2026-05-14. GitHub PR comments carry the real date; that mismatch is accepted.
 
 ## Hard rules
 - `main` and `develop` change only through merged PRs. The only exceptions: Emexnord's bootstrap
   commits on `main` before `develop` exists, and the initial push of `develop`.
 - Every branch is cut from an up-to-date `develop` (release PRs go `develop` → `main`).
 - Emexnord follows the same rules when he writes code: own branch, own PR, a teammate reviews it.
-- PRs are merged with a merge commit (`gh pr merge <n> --merge --delete-branch`). No squash or
-  rebase merges, so the graph keeps every branch.
+- PRs are merged with a merge commit, never squash or rebase, so the graph keeps every branch.
+  To keep the backdated timeline, the "merge button" is simulated: Emexnord runs
+  `git merge --no-ff origin/<branch> -m "Merge pull request #<n> from emexnord/<branch>"` with a
+  backdated date, pushes `develop` (or `main`), waits until GitHub shows the PR as MERGED, then
+  deletes the remote branch. This is the only way commits reach `develop`/`main`.
 - Never rewrite shared history: no force push, no rebase of a pushed branch. Catch up by merging
   `develop` into the feature branch.
 - CI is fake: jobs only `echo` success. A PR merges only when CI is green and it has an approval.
@@ -58,9 +71,8 @@ real personal email. Commit as a dev with:
   (short, fake-but-plausible answers).
 - Non-trivial features carry a `work/<yyyy-mm-short-name>/` folder with one-line `intent.md` and
   `plan.md` (and `spec.md` when it is cross-team), committed first on the branch.
-- Reviews: one GitHub account plays everyone, so GitHub blocks approving or requesting changes on
-  your own PR. Post reviews as comments: `gh pr review <n> --comment -b "[Review by Emexnord]
-  Changes requested: ..."` (or `gh pr comment`), ending with `Approved.` when approved.
+- Reviews: signed PR comments ending in `Approved.` or `Changes requested: ...`. emexnord reviews
+  most PRs; a teammate reviews emexnord's own PRs.
 - Releases: PR `develop` → `main` titled `release: vX.Y.0`, after a "preview test" comment on the
   PR. After merge, tag `main` (`git tag -a vX.Y.0`) and push the tag.
 - Merge commits are not counted, so make each real commit carry a meaningful small change.
@@ -87,7 +99,8 @@ real personal email. Commit as a dev with:
 1. Bootstrap (Emexnord on `main`): commit this Claude setup with a proper `.gitignore`, then the
    three-part skeleton, fake CI and CODEOWNERS with real team handles. Tag `v0.1.0`.
 2. Emexnord creates `develop`, sets branch protection on GitHub for `main` and `develop`
-   (require PR, require the fake CI check; no required approvals, since one account plays all).
+   (require PR and the fake CI checks; 0 approvals since one account does everything; admins not
+   enforced, so the simulated merge button can push).
 3. Onboarding: each new dev's first PR is small (e.g. a README line about their area).
 4. Feature waves: parallel feature PRs, review rounds, catch-up merges, conflicts, integration fixes.
 5. Release when a coherent set of features is on `develop`; then the next wave.
