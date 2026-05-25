@@ -1,1 +1,1 @@
-# login with valid credentials returns a token
+# valid credentials return a token; bad password returns 401
