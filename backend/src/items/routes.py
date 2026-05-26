@@ -1,1 +1,1 @@
-# GET /items and POST /items
+# GET /items and POST /items (quantity must be >= 0)
