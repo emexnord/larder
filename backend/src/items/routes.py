@@ -1,1 +1,1 @@
-# GET /items and POST /items (quantity must be >= 0)
+# GET /items and POST /items (login required; quantity must be >= 0)
