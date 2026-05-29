@@ -1,1 +1,1 @@
-// fetches /items from the API
+// fetches /items with the session token
